@@ -339,29 +339,43 @@ function onSignInCallback(authResult) {
         var features = [
           {
             position: new google.maps.LatLng(42.4732347, -83.4364574),
+            name: '<B>Mercedes-Benz of Novi</B><br>39500 Grand River Ave<br>Novi, MI 48375<br>Tel: (877) 303-3314<br><a href="http://www.mercedesbenzofnovi.com">http://www.mercedesbenzofnovi.com</a><br><img src="https://cdn-ds.com/media/websites/3077/content/about_sm_1_d.jpg?s=11263" height="120"/>',
             type: 'dealer'
           }, {
             position: new google.maps.LatLng(42.5575745, -83.2218124),
+            name: '<B>Mercedes-Benz of Bloomfield Hills</B><br>36600 Woodward Ave<br>Bloomfield Twp, MI 48304<br>Tel: (248) 644-8400<br><a href="http://www.mbbloomfield.com">http://www.mbbloomfield.com</a><br><img src="http://imganuncios.mitula.net/2013_mercedes_benz_e_class_e550_4matic_bloomfield_hills_mi_8040049458936557153.jpg" height="120"/>',
             type: 'dealer'
           }, {
             position: new google.maps.LatLng(42.6724447, -83.1322236),
+            name: '<B>Mercedes-Benz of Rochester</B><br>595 S Rochester Rd<br>Rochester Hills, MI 48307<br>Tel: (248) 652-3800<br><a href="https://www.mbrochester.com">https://www.mbrochester.com</a><br><img src="https://cdn-ds.com/media/websites/3052/content/DealeRocket/facility.jpg?s=105700" height="120"/>',
             type: 'dealer'
           }, {
             position: new google.maps.LatLng(42.2871719, -83.8132288),
+            name: '<B>Mercedes-Benz of Ann Arbor</B><br>570 Auto Mall Dr<br>Ann Arbor, MI 48103<br>Tel: (734) 663-3300<br><a href="http://www.mercedesofannarbor.com">http://www.mercedesofannarbor.com</a><br><img src="http://pictures.dealer.com/s/suburbanmercedesbenzofannarbor/1007/9f60893c60bdf422c8506763d67c0b25x.jpg" height="120"/>',
             type: 'dealer'
           }, {
             position: new google.maps.LatLng(42.6026206, -83.3816739),
+            name: '<B>Mercedes-Benz of West Bloomfield</B><br>36600 Woodward Ave<br>Bloomfield Twp, MI 48304<br>Tel: (248) 644-8400<br><a href="http://www.mbbloomfield.com">http://www.mbbloomfield.com</a><br><img src="http://www.mbbloomfield.com/wp-content/themes/DealerInspireDealerTheme/images/aboutrow-bg.jpg" height="120"/>',
             type: 'dealer'
           }
         ];
+        
+        var infowindow = new google.maps.InfoWindow();
 
         // Create markers.
         features.forEach(function(feature) {
           var marker = new google.maps.Marker({
-            position: feature.position,
-            //icon: icons[feature.type].icon,
+            position: feature.position,		// Add position
+            icon: icons[feature.type].icon,		// Add icon
             map: map
           });
+          
+          google.maps.event.addListener(marker, 'click', (function(marker) {
+              return function() {
+                infowindow.setContent(feature.name);
+                infowindow.open(map, marker);		// Add info
+              }
+            })(marker));
         });
       }
     </script>
