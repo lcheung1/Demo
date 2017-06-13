@@ -368,6 +368,7 @@ function onSignInCallback(authResult) {
             position: feature.position,		// Add position
             icon: icons[feature.type].icon,		// Add icon
             map: map
+            
           });
           
           google.maps.event.addListener(marker, 'click', (function(marker) {
