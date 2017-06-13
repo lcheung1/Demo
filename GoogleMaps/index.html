@@ -366,14 +366,15 @@ function onSignInCallback(authResult) {
         features.forEach(function(feature) {
           var marker = new google.maps.Marker({
             position: feature.position,		// Add position
-            //icon: icons[feature.type].icon,		// Add icon
+            icon: icons[feature.type].icon,		// Add icon
             map: map
+            
           });
           
           google.maps.event.addListener(marker, 'click', (function(marker) {
               return function() {
                 infowindow.setContent(feature.name);
-                //infowindow.open(map, marker);		// Add info
+                infowindow.open(map, marker);		// Add info
               }
             })(marker));
         });
